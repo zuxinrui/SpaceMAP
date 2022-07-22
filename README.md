@@ -1,4 +1,4 @@
-![image](images/spacemap.png)
+![image](image/spacemap.png)
 
 # SpaceMAP
 
