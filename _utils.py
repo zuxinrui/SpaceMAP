@@ -1291,8 +1291,10 @@ def extension_from_2d_factor_cosine(dim):
 
 def mle_intrinsic_dimension(knn_dists, k, metric='euclidean'):
     Tk = np.tile(np.array([knn_dists[:, -1]]).T, (1, k-1))
+    # replace the zeros of the nearest neighbors
+    knn_dists[np.where(knn_dists == 0)] = knn_dists[:, -1][np.where(knn_dists == 0)[0]]
     if metric == 'euclidean':
-        # 之前k-1这里有错误
+        # previous k-1 has problem
         return 1/(1/(k-1)*np.sum(np.log2(Tk/knn_dists[:, :(k-1)]), axis=1))
     else:
         eta = 1/(1/(k-1)*np.sum(np.log2(Tk/knn_dists[:, :(k-1)]), axis=1))
