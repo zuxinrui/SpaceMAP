@@ -313,7 +313,7 @@ def hierarchical_probability_p(x, dof, y_rate, chi_concern_rate, knn, knn2, cdf_
     # sigma_mat = np.tile(np.array([sigma]).T, (1, knn))
 
     # P1 (knn)
-    p1 = 1 - chi_concern_rate * y_rate * chi.cdf((near_field_dists - rho_mat)*x_rate_mat + start_point, dof)  # 把peak推到近处
+    p1 = 1 - chi_concern_rate * y_rate * chi.cdf((near_field_dists - rho_mat)*x_rate_mat + start_point, dof)
     # p1 = np.exp(-(near_field_dists - rho_mat) / sigma_mat)
     # p1 = np.exp(-np.power((near_field_dists-rho_mat)/alpha, 1/beta) / sigma_mat)
     rows = np.repeat(np.int16(np.linspace(0, x.shape[0]-1, x.shape[0])), repeats=knn, axis=0)
@@ -367,7 +367,7 @@ def hierarchical_probability_p_new(x, beta, alpha, chi_concern_rate, knn, knn2, 
         print('[SpaceMAP] Near field p complete.')
 
     # P2 knn-knn2
-    global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)
     sigmas, last_nns = binary_search_sigma(global_nn_dists, knn2, chi_concern_rate, bandwidth=1.0)  # sum = log(k) * bandwidth
     rows, cols, vals, _ = compute_membership_strengths(global_nn_indices, global_nn_dists,
                                                        sigmas, last_nns, chi_concern_rate)
@@ -409,7 +409,7 @@ def hierarchical_probability_p_ultimate(x, alpha, beta, knn, knn2, chi_concern_r
         print('[SpaceMAP] Near field p complete.')
 
     # P2 knn-knn2
-    global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: attention: maybe overlapped
     sigma_2, last_nns = binary_search_sigma_2(global_nn_dists, knn2, chi_concern_rate, bandwidth=1.0)  # sum = log(k) * bandwidth
     rows, cols, vals, _ = compute_membership_strengths_p2(global_nn_indices, global_nn_dists,
                                                        sigma_2, last_nns, chi_concern_rate)
@@ -451,7 +451,7 @@ def hierarchical_probability_p_without_threshold(x, alpha, beta, knn, knn2, chi_
         print('[SpaceMAP] Near field p complete.')
 
     # P2 knn-knn2
-    global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)
     sigma_2, last_nns = binary_search_sigma_2(global_nn_dists, knn2, chi_concern_rate, bandwidth=1.0)  # sum = log(k) * bandwidth
     rows, cols, vals, _ = compute_membership_strengths_p2(global_nn_indices, global_nn_dists,
                                                        sigma_2, last_nns, chi_concern_rate)
@@ -484,8 +484,8 @@ def hierarchical_probability_p_data_specific(x_ind, x_dist, knn, knn2, chi_conce
     else:
         d_esti = mle_intrinsic_dimension(near_field_dists, knn-1, metric=metric)
         # print('d_esti: ', d_esti.shape)
-        d_esti[np.where(d_esti > 50)] = 50  # 这似乎限制了d_global不能太小，否则有的d_local很大，会让计算发散，
-        # 而且，local 越多，这种情况越是缓解
+        d_esti[np.where(d_esti > 50)] = 50
+
     if metric == 'euclidean':
         beta_near = d_esti / 2
         alpha_near = extension_from_2d_factor_euclidean(d_esti)
@@ -517,7 +517,7 @@ def hierarchical_probability_p_data_specific(x_ind, x_dist, knn, knn2, chi_conce
         print('[SpaceMAP] Near field p complete.')
 
     # P2 knn-knn2
-    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)
     global_nn_indices = x_ind[:, knn:knn+knn2]
     global_nn_dists = x_dist[:, knn:knn+knn2]
     sigma_2 = binary_search_sigma_2(global_nn_dists, last_nn, knn2, chi_concern_rate, bandwidth=1.0)  # sum = log(k) * bandwidth
@@ -552,8 +552,7 @@ def hierarchical_probability_p_data_specific_variant_knn(x_ind, x_dist, knn, knn
     else:
         d_local_esti = mle_intrinsic_dimension(near_field_dists, knn-1, metric=metric)
         # print('d_esti: ', d_esti.shape)
-        d_local_esti[np.where(d_local_esti > 50)] = 50  # 这似乎限制了d_global不能太小，否则有的d_local很大，会让计算发散，
-        # 而且，local 越多，这种情况越是缓解
+        d_local_esti[np.where(d_local_esti > 50)] = 50
 
     if metric == 'euclidean':
         print('[SpaceMAP] using metric euclidean')
@@ -598,7 +597,7 @@ def hierarchical_probability_p_data_specific_variant_knn(x_ind, x_dist, knn, knn
         print('[SpaceMAP] Near field p complete.')
 
     # P2 knn-knn2
-    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)
     global_nn_indices = x_ind[:, knn:knn+knn2]
     global_nn_dists = x_dist[:, knn:knn+knn2]
 
@@ -665,10 +664,10 @@ def hierarchical_probability_p_bayes_varknn(x, x_ind, x_dist, near_outlier_thres
             if count >= near_outlier_threshold:
                 break
         local_num[i] = j
-        near_field_indices[i, :(j-1)] = candidate_indices_copy[i, 1:j]  # 0都替代成了-1
+        near_field_indices[i, :(j-1)] = candidate_indices_copy[i, 1:j]
         near_field_dists[i, :(j-1)] = candidate_dists[i, 1:j]
-        near_field_dists_copy[i] = near_field_dists[i]  # 后面都是inf
-        near_field_dists[i, (j-1):] = candidate_dists[i, j-1]  # 后面的数统一改成最后一个near
+        near_field_dists_copy[i] = near_field_dists[i]
+        near_field_dists[i, (j-1):] = candidate_dists[i, j-1]
         if i % 10000 == 0 and verbose:
             print('[SpaceMAP] Fitting SVM RBF for n-near: ', i)
     near_field_indices = csr_matrix(near_field_indices)
@@ -689,8 +688,7 @@ def hierarchical_probability_p_bayes_varknn(x, x_ind, x_dist, near_outlier_thres
     else:
         d_local_esti = mle_intrinsic_dimension_varknn(near_field_dists, local_num, metric=metric)
         # print('d_esti: ', d_esti.shape)
-        d_local_esti[np.where(d_local_esti > 50)] = 50  # 这似乎限制了d_global不能太小，否则有的d_local很大，会让计算发散，
-        # 而且，local 越多，这种情况越是缓解
+        d_local_esti[np.where(d_local_esti > 50)] = 50
 
     if metric == 'euclidean':
         print('[SpaceMAP] using metric euclidean')
@@ -750,7 +748,7 @@ def hierarchical_probability_p_bayes_varknn(x, x_ind, x_dist, near_outlier_thres
     # near_field_dists_copy[scipy.sparse.find(near_field_dists_copy == np.inf)] = 0
 
     # P2 knn-knn2
-    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)
     global_nn_indices = np.zeros((x_ind.shape[0], knn2))
     global_nn_dists = np.zeros((x_ind.shape[0], knn2))
     if verbose:
@@ -802,8 +800,8 @@ def hierarchical_probability_p_binarysearch(x_ind, x_dist, knn, knn2, chi_concer
         print('d-local = auto')
         d_local_esti = mle_intrinsic_dimension(near_field_dists, knn-1, metric=metric)
         # print('d_esti: ', d_esti.shape)
-        d_local_esti[np.where(d_local_esti > 50)] = 50  # 这似乎限制了d_global不能太小，否则有的d_local很大，会让计算发散，
-        # 而且，local 越多，这种情况越是缓解
+        d_local_esti[np.where(d_local_esti > 50)] = 50
+
         print('d-local = ', d_local_esti)
 
     if metric == 'euclidean':
@@ -849,7 +847,7 @@ def hierarchical_probability_p_binarysearch(x_ind, x_dist, knn, knn2, chi_concer
         print('[SpaceMAP] Near field p complete.')
 
     # P2 knn-knn2
-    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)
     global_nn_indices = x_ind[:, knn:knn+knn2]
     global_nn_dists = x_dist[:, knn:knn+knn2]
 
@@ -894,8 +892,7 @@ def p_fixed_boundary_gaussian(x_ind, x_dist, knn, knn2, chi_concern_rate, d_loca
     else:
         d_local_esti = mle_intrinsic_dimension(near_field_dists, knn-1, metric=metric)
         # print('d_esti: ', d_esti.shape)
-        d_local_esti[np.where(d_local_esti > 50)] = 50  # 这似乎限制了d_global不能太小，否则有的d_local很大，会让计算发散，
-        # 而且，local 越多，这种情况越是缓解
+        d_local_esti[np.where(d_local_esti > 50)] = 50
 
     if metric == 'euclidean':
         print('[SpaceMAP] using metric euclidean')
@@ -990,7 +987,7 @@ def binary_p(x_ind,
         print('[SpaceMAP] Near field p complete.')
 
     # P2 knn-knn2
-    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)  # TODO: 注意点可能重合了
+    # global_nn_indices, global_nn_dists = nearest_neighbors(x, knn, knn2)
     global_nn_indices = x_ind[:, knn:knn+knn2]
     global_nn_dists = x_dist[:, knn:knn+knn2]
 
@@ -1172,7 +1169,7 @@ def hierarchical_probability_q(D2, d_global, local_range, factor, sigma_ext, chi
     # q = torch.zeros(D2.shape).to('cuda')
     # x_rate = cdf_range / local_range
 
-    # q = 1 - chi_concern_rate * y_rate * chi.cdf(D * x_rate, 2)  # 这个好像没有梯度
+    # q = 1 - chi_concern_rate * y_rate * chi.cdf(D * x_rate, 2)
 
     # mixed Q function:
     power = 8
