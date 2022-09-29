@@ -45,7 +45,7 @@ class SpaceMAP(BaseEstimator):
 
     Date:       01/03/2022
 
-    Version:    0.5-dev
+    Version:    0.1.0
 
     Paper:      https://proceedings.mlr.press/v162/zu22a.html
 
