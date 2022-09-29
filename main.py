@@ -33,8 +33,8 @@ x = x / 255.0
 x = x.reshape(x.shape[0], -1)
 
 # 2) instantiate SpaceMAP
-spacemap = SpaceMAP(n_near_field=21,  # umap
-                    n_middle_field=700,  # 因为n-middle太大而导致发散
+spacemap = SpaceMAP(n_near_field=21,
+                    n_middle_field=700,
                     d_local=0,
                     d_global=0,
                     n_epochs=200,
