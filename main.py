@@ -25,8 +25,8 @@ from _spacemap import SpaceMAP
 transform = transforms.Compose([
     transforms.ToTensor(),
 ])
-x_train = torchvision.datasets.MNIST(root='../TUDelft/Datasets/data_multi/', train=True, transform=transform, download=True)
-x_test = torchvision.datasets.MNIST(root='../TUDelft/Datasets/data_multi/', train=False, transform=transform, download=True)
+x_train = torchvision.datasets.MNIST(root='/home/zuxinrui/Desktop/TUDelft/Datasets/data_multi/', train=True, transform=transform, download=True)
+x_test = torchvision.datasets.MNIST(root='/home/zuxinrui/Desktop/TUDelft/Datasets/data_multi/', train=False, transform=transform, download=True)
 x_targets = np.concatenate((x_train.targets, x_test.targets), axis=0)
 x = np.concatenate((np.array(x_train.data).astype('float32'), np.array(x_test.data).astype('float32')), axis=0)
 x = x / 255.0
