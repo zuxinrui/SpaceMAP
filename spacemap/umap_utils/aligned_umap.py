@@ -3,11 +3,11 @@ import numba
 from sklearn.base import BaseEstimator
 from sklearn.utils import check_random_state, check_array
 
-from umap_utils.sparse import arr_intersect as intersect1d
-from umap_utils.sparse import arr_union as union1d
-from umap_utils.umap_ import UMAP, make_epochs_per_sample
-from umap_utils.spectral import spectral_layout
-from umap_utils.layouts import optimize_layout_aligned_euclidean
+from .sparse import arr_intersect as intersect1d
+from .sparse import arr_union as union1d
+from .umap_ import UMAP, make_epochs_per_sample
+from .spectral import spectral_layout
+from .layouts import optimize_layout_aligned_euclidean
 
 INT32_MIN = np.iinfo(np.int32).min + 1
 INT32_MAX = np.iinfo(np.int32).max - 1

@@ -7,18 +7,12 @@ from temp import temporary_fn
 
 temporary_fn()
 
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import torch.nn.functional as F
-import torch.backends.cudnn as cudnn
-
 import torchvision
 import torchvision.transforms as transforms
 
 import matplotlib
 
-from _spacemap import SpaceMAP
+from spacemap import SpaceMAP
 
 
 # 1) Load MNIST dataset
@@ -33,8 +27,8 @@ x = x / 255.0
 x = x.reshape(x.shape[0], -1)
 
 # 2) instantiate SpaceMAP
-spacemap = SpaceMAP(n_near_field=21,
-                    n_middle_field=700,
+spacemap = SpaceMAP(n_near_field=11, # 21
+                    n_middle_field=200,  # 700
                     d_local=0,  # set to 0 to auto-compute based on n_near_field
                     d_global=0,  # set to 0 to auto-compute based on n_middle_field
                     eta=0.6,  # balance between local and global structure
@@ -42,6 +36,7 @@ spacemap = SpaceMAP(n_near_field=21,
                     init='spectral',
                     metric='euclidean',
                     verbose=True,
+                    use_gpu_knn=False,
                     plot_results=False,
                     num_plots=50,
                     )

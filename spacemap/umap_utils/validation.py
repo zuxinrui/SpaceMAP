@@ -2,7 +2,7 @@ import numpy as np
 import numba
 
 from sklearn.neighbors import KDTree
-from umap_utils.distances import named_distances
+from .distances import named_distances
 
 
 @numba.njit()

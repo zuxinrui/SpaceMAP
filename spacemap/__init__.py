@@ -1,6 +1,4 @@
-from _spacemap import SpaceMAP
-
-import numba
+from ._spacemap import SpaceMAP
 
 import pkg_resources
 

@@ -1,7 +1,7 @@
 import numpy as np
 import numba
-from umap_utils.utils import tau_rand_int
-from _utils import find_ab_params
+from .umap_utils.utils import tau_rand_int
+from ._utils import find_ab_params
 
 
 @numba.njit()

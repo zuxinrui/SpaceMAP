@@ -1,4 +1,5 @@
 import locale
+import time
 
 from scipy.optimize import curve_fit
 from sklearn.base import BaseEstimator
@@ -18,11 +19,11 @@ except ImportError:
 import numpy as np
 import scipy.sparse
 
-from umap_utils.spectral import spectral_layout  # ONLY for spectral initialization
-from _layouts import spacemap_optimization
+from .umap_utils.spectral import spectral_layout  # ONLY for spectral initialization
+from ._layouts import spacemap_optimization
 import faiss
 
-from _utils import *
+from ._utils import *
 
 locale.setlocale(locale.LC_NUMERIC, "C")
 
@@ -84,6 +85,7 @@ class SpaceMAP(BaseEstimator):
                  init='spectral',
                  metric='euclidean',
                  verbose=True,
+                 use_gpu_knn=True,
                  plot_results=False,
                  num_plots=50,
                  ):
@@ -94,6 +96,9 @@ class SpaceMAP(BaseEstimator):
         self.data = 0
         self.random_state = check_random_state(42)
         self.verbose = verbose
+        self.plot_results = plot_results
+        self.num_plots = num_plots
+        self.use_gpu_knn = use_gpu_knn
         self.metric = metric
         self._disconnection_distance = DISCONNECTION_DISTANCES.get(
             self.metric, np.inf
@@ -199,7 +204,6 @@ class SpaceMAP(BaseEstimator):
 
         self.lr = 1.0  # learning rate
 
-        self.plot_results = plot_results
         self.num_plots = num_plots
         if self.plot_results:
             self.intermedian_embeddings = 0
@@ -228,9 +232,14 @@ class SpaceMAP(BaseEstimator):
             print('[SpaceMAP] calculating knn graph...')
 
         print('[SpaceMAP] use FAISS library to calculate knn graph')
-        gpures = faiss.StandardGpuResources()
-        flat_config = faiss.GpuIndexFlatConfig()
-        index = faiss.GpuIndexFlatL2(gpures, self.data.shape[1], flat_config)
+        if self.use_gpu_knn:
+            # GPU version
+            res = faiss.StandardGpuResources()
+            flat_config = faiss.GpuIndexFlatConfig()
+            index = faiss.GpuIndexFlatL2(res, self.data.shape[1], flat_config)
+        else:
+            # CPU version
+            index = faiss.IndexFlatL2(self.data.shape[1])
         index.add(self.data)
 
         self._knn_dists, self._knn_indices = index.search(self.data,

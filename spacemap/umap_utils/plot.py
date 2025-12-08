@@ -39,7 +39,7 @@ import sklearn.neighbors
 
 from matplotlib.patches import Patch
 
-from umap_utils.utils import submatrix
+from .utils import submatrix
 
 from bokeh.plotting import show as show_interactive
 from bokeh.plotting import output_file, output_notebook

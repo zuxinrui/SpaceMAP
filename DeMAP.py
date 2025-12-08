@@ -25,7 +25,7 @@ import time
 import math
 import matplotlib
 
-from _spacemap import SpaceMAP
+from spacemap import SpaceMAP
 
 import graphtools
 from scipy.spatial.distance import pdist, squareform

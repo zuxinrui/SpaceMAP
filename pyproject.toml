@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "spacemap"
+name = "spacemap-dr"
 version = "0.1.0"
 description = "SpaceMAP: Visualizing High-dimensional data by Space Expansion"
 readme = { file = "README.md", content-type = "text/markdown" }
@@ -48,11 +48,17 @@ classifiers = [
 dependencies = [
   "scikit-learn>=0.24",
   "numba>=0.55",
-  "faiss>=1.7.0",
+  "faiss-cpu>=1.7.0",
   "scipy>=1.7",
   "ipywidgets>=7",
+  "matplotlib",
+  "torchvision",
+  "pynndescent",
 ]
 
 [project.urls]
 Homepage = "https://github.com/zuxinrui/SpaceMAP"
 Source = "https://github.com/zuxinrui/SpaceMAP"
+
+[tool.setuptools.packages.find]
+include = ["spacemap", "spacemap.*"]

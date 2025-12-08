@@ -28,7 +28,7 @@ from sklearn import svm
 # import cuml
 # from sklearn.decomposition import PCA
 
-import umap_utils  # just used for setting Pij to be UMAP-like in some options
+from . import umap_utils  # just used for setting Pij to be UMAP-like in some options
 # from pynndescent import NNDescent
 # from pynndescent.distances import named_distances as pynn_named_distances
 # from pynndescent.sparse import sparse_named_distances as pynn_sparse_named_distances

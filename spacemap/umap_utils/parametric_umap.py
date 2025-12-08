@@ -1,10 +1,10 @@
 import numpy as np
-from umap_utils import UMAP
+from . import UMAP
 from warnings import warn, catch_warnings, filterwarnings
-from umap_utils.umap_ import make_epochs_per_sample
+from .umap_ import make_epochs_per_sample
 from numba import TypingError
 import os
-from umap_utils.spectral import spectral_layout
+from .spectral import spectral_layout
 from sklearn.utils import check_random_state
 import codecs, pickle
 from sklearn.neighbors import KDTree
