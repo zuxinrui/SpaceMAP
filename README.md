@@ -43,7 +43,7 @@ embedding = spacemap.fit_transform(data)
 
 ## Example
 
-Please refer to the [example](https://github.com/zu-xinrui/SpaceMAP/blob/main/main.py) for details.
+Please refer to the [example](https://github.com/zuxinrui/SpaceMAP/blob/main/main.py) for details.
 
 # Citation
 
