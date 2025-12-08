@@ -2,7 +2,7 @@
 
 # SpaceMAP
 
-SpaceMAP is a dimensionality reduction method utilizing the local and global intrinsic dimensions of the data to better alleviate the 'crowding problem' analytically. 
+SpaceMAP is a dimensionality reduction method utilizing the local and global intrinsic dimensions of the data to better alleviate the 'crowding problem' analytically.
 
 ## Paper
 
@@ -10,6 +10,9 @@ SpaceMAP is a dimensionality reduction method utilizing the local and global int
 
 [https://proceedings.mlr.press/v162/zu22a.html](https://proceedings.mlr.press/v162/zu22a.html)
 
+<p align="center">
+  <img src="image/spacemap-crop.gif" width="700"/>
+</p>
 
 ## Hyper-parameters
 
