@@ -11,7 +11,7 @@ SpaceMAP is a dimensionality reduction method utilizing the local and global int
 [https://proceedings.mlr.press/v162/zu22a.html](https://proceedings.mlr.press/v162/zu22a.html)
 
 <p align="center">
-  <img src="image/spacemap-crop.gif" width="700"/>
+  <img src="image/spacemap-crop.gif" width="350"/>
 </p>
 
 ## Hyper-parameters
