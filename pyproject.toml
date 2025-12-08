@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61", "wheel", "cython", "numpy"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "spacemap"
+version = "0.1.0"
+description = "SpaceMAP: Visualizing High-dimensional data by Space Expansion"
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.9"
+
+authors = [
+  { name = "Xinrui Zu", email = "zuxinrui95@gmail.com" },
+]
+
+license = { text = "MIT" }
+
+keywords = [
+  "Dimensionality Reduction",
+  "t-SNE",
+  "UMAP",
+  "Representation Learning",
+  "ICML",
+]
+
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: C",
+  "Topic :: Software Development",
+  "Topic :: Scientific/Engineering",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Operating System :: Unix",
+  "Operating System :: MacOS",
+  "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+  "scikit-learn>=0.24",
+  "numba>=0.55",
+  "faiss>=1.7.0",
+  "scipy>=1.7",
+  "ipywidgets>=7",
+]
+
+[project.urls]
+Homepage = "https://github.com/zuxinrui/SpaceMAP"
+Source = "https://github.com/zuxinrui/SpaceMAP"

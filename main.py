@@ -35,8 +35,9 @@ x = x.reshape(x.shape[0], -1)
 # 2) instantiate SpaceMAP
 spacemap = SpaceMAP(n_near_field=21,
                     n_middle_field=700,
-                    d_local=0,
-                    d_global=0,
+                    d_local=0,  # set to 0 to auto-compute based on n_near_field
+                    d_global=0,  # set to 0 to auto-compute based on n_middle_field
+                    eta=0.6,  # balance between local and global structure
                     n_epochs=200,
                     init='spectral',
                     metric='euclidean',
