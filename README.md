@@ -1,4 +1,7 @@
-![image](image/spacemap-main.png)
+<p align="center">
+  <img src="image/spacemap-main.png" height="260"/>
+  <img src="image/spacemap-demo.gif" height="260"/>
+</p>
 
 # SpaceMAP
 
@@ -9,10 +12,6 @@ SpaceMAP is a dimensionality reduction method utilizing the local and global int
 [https://icml.cc/virtual/2022/spotlight/18170](https://icml.cc/virtual/2022/spotlight/18170)
 
 [https://proceedings.mlr.press/v162/zu22a.html](https://proceedings.mlr.press/v162/zu22a.html)
-
-<p align="center">
-  <img src="image/spacemap-crop.gif" width="350"/>
-</p>
 
 ## Hyper-parameters
 
