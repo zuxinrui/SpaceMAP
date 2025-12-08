@@ -20,13 +20,13 @@ SpaceMAP has 4 main hyper-parameters: n-near/n-middle and d-local/d-global, whic
 - d-local: estimated intrinsic dimensions of the near fields of each data point. (default: Auto)
 - d-global: estimated intrinsic dimension of the whole dataset. (default: Auto)
 
-# Installation
+## Installation
 
 ```bash
 pip install spacemap-dr
 ```
 
-# Usage
+## Usage
 
 ```python
 from spacemap import SpaceMAP
