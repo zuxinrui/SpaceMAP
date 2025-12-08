@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="image/spacemap-main.png" height="260"/>
-  <img src="image/spacemap-crop.gif" height="260"/>
+  <img src="image/spacemap-main.png" height="240"/>
+  <img src="image/spacemap-crop.gif" height="240"/>
 </p>
 
 # SpaceMAP
