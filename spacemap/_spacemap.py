@@ -104,7 +104,7 @@ class SpaceMAP(BaseEstimator):
             self.metric, np.inf
         )
 
-        self.n_near = n_near_field
+        self.n_near = n_near_field + 1
         self.n_middle = n_middle_field
         self.knn_bayes = 50
         # Q Chi:

@@ -22,3 +22,49 @@ SpaceMAP has 4 main hyper-parameters: n-near/n-middle and d-local/d-global, whic
 
 # Installation
 
+```bash
+pip install spacemap-dr
+```
+
+# Usage
+
+```python
+from spacemap import SpaceMAP
+import numpy as np
+
+data = np.random.rand(1000, 100)
+# Auto mode
+spacemap = SpaceMAP()
+# Manually change the parameters
+spacemap = SpaceMAP(n_near_field=10, n_middle_field=100, d_local=0, d_global=0)
+
+embedding = spacemap.fit_transform(data)
+```
+
+## Example
+
+Please refer to the [example](https://github.com/zu-xinrui/SpaceMAP/blob/main/main.py) for details.
+
+# Citation
+
+If you find SpaceMAP useful in your research, please consider citing:
+
+```bibtex
+@InProceedings{pmlr-v162-zu22a,
+  title = 	 {{S}pace{MAP}: Visualizing High-Dimensional Data by Space Expansion},
+  author =       {Zu, Xinrui and Tao, Qian},
+  booktitle = 	 {Proceedings of the 39th International Conference on Machine Learning},
+  pages = 	 {27707--27723},
+  year = 	 {2022},
+  editor = 	 {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+  volume = 	 {162},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {17--23 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v162/zu22a/zu22a.pdf},
+  url = 	 {https://proceedings.mlr.press/v162/zu22a.html},
+}
+
+
+
+
